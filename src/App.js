@@ -19,14 +19,17 @@ function Map({uid}) {
 
   useEffect(()=>{
     axios.get(url).then((res) => { 
-      setLat(parseFloat(res.data.v[0].location[0]));
-      setLong(parseFloat(res.data.v[0].location[1]));
+      setLat(parseFloat(res.data.v[0].location[1]));
+      setLong(parseFloat(res.data.v[0].location[0]));
     
       })
 
   },[])
   console.log(laty,longy);
   return (
+    <>
+    {
+    laty && longy &&
     <GoogleMap
       defaultZoom={15}
       defaultCenter={{ lat: parseFloat(laty), lng: parseFloat(longy) }}
@@ -35,6 +38,8 @@ function Map({uid}) {
       <Marker  position={{ lat: parseFloat(laty) , lng:parseFloat(longy) }} />
 
     </GoogleMap>
+    }
+    </>
   );
 }
 
